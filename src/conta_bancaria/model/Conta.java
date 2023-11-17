@@ -70,6 +70,8 @@ public class Conta {
 	
 	public void depositar(float valor) {
 		this.setSaldo(this.getSaldo() + valor);
+		System.out.println("Juntos somos mais fortes, camarada!           "
+				+ "\nDeposito realizado com sucesso.               ");
 	}
 	
 
@@ -83,12 +85,12 @@ public class Conta {
 		
 		System.out.println(Cores.ANSI_YELLOW_BACKGROUND_BRIGHT + Cores.TEXT_RED_BOLD
 				+ "**********************************************");
-		System.out.println("Dados da conta:");
+		System.out.println("**************** o seu Capital: **************");
 		System.out.println("**********************************************");
-		System.out.println("Número da conta: " + this.numero);
-		System.out.println("Agência: " + this.agencia);
-		System.out.println("Tipo da Conta: " + tipo);
-		System.out.println("Titular da conta: " + this.titular);
-		System.out.println("Saldo disponível: " + this.saldo);
+		System.out.println("Número da conta: " + this.numero + "                           ");
+		System.out.println("Agência: " + this.agencia + "                                 ");
+		System.out.println("Tipo da Conta: " + tipo + "                 ");
+		System.out.println("Titular da conta: " + this.titular + "           ");
+		System.out.println("Saldo disponível: " + this.saldo + "                     \n");
 	}
 }
