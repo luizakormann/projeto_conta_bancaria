@@ -3,6 +3,7 @@ package conta_bancaria;
 import java.util.Scanner;
 
 import conta_bancaria.model.Conta;
+import conta_bancaria.model.ContaCorrente;
 import conta_bancaria.util.Cores;
 
 public class Menu {
@@ -17,6 +18,14 @@ public class Menu {
 		c1.visualizar();
 		c1.depositar(900.00f);
 		c1.visualizar();
+		
+		// Teste Conta corrente
+		ContaCorrente cc1 = new ContaCorrente(3, 456, 1, "Felipe", 100000.00f, 2000.00f);
+		cc1.visualizar();
+		
+		// teste saque com limite
+		cc1.sacar(101000.00f);
+		cc1.visualizar();
 		
 		int opcao;
 
