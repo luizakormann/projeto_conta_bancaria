@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import conta_bancaria.model.Conta;
 import conta_bancaria.model.ContaCorrente;
+import conta_bancaria.model.ContaPoupanca;
 import conta_bancaria.util.Cores;
 
 public class Menu {
@@ -26,6 +27,10 @@ public class Menu {
 		// teste saque com limite
 		cc1.sacar(101000.00f);
 		cc1.visualizar();
+		
+		// teste conta poupança
+		ContaPoupanca cp1 = new ContaPoupanca(0002, 13, 2, "Gilles Lipovestsky", 10000.00f, 13);
+		cp1.visualizar();
 		
 		int opcao;
 
