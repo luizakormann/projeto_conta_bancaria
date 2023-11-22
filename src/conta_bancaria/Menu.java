@@ -2,37 +2,21 @@ package conta_bancaria;
 
 import java.util.Scanner;
 
-import conta_bancaria.model.Conta;
+import conta_bancaria.controller.ContaController;
 import conta_bancaria.model.ContaCorrente;
 import conta_bancaria.model.ContaPoupanca;
 import conta_bancaria.util.Cores;
 
 public class Menu {
+	
 	static Scanner leia = new Scanner(System.in);
 
 	public static void main(String[] args) {
-
-		// Teste da Classe Conta
-		Conta c1 = new Conta(13, 1313, 1, "Carlos Marquinhos", 13000.00f);
-		c1.visualizar();
-		c1.sacar(1000.00f);
-		c1.visualizar();
-		c1.depositar(900.00f);
-		c1.visualizar();
 		
-		// Teste Conta corrente
-		ContaCorrente cc1 = new ContaCorrente(3, 456, 1, "Felipe", 100000.00f, 2000.00f);
-		cc1.visualizar();
-		
-		// teste saque com limite
-		cc1.sacar(101000.00f);
-		cc1.visualizar();
-		
-		// teste conta poupança
-		ContaPoupanca cp1 = new ContaPoupanca(0002, 13, 2, "Gilles Lipovestsky", 10000.00f, 13);
-		cp1.visualizar();
-		
-		int opcao;
+		ContaController contas = new ContaController();
+		int opcao, numero, agencia, tipo, aniver;
+		String titular ="";
+		float saldo, limite;
 
 		while (true) {
 
@@ -67,10 +51,36 @@ public class Menu {
 			case 1:
 				System.out.println(Cores.ANSI_YELLOW_BACKGROUND_BRIGHT + Cores.TEXT_RED_BOLD + 
 						"Seja bem vindo ao BanComuna, camarada!\nAqui quem recebe os lucros é você, e quem paga são os super-ricos e super-taxados!\nIniciaremos agora seu cadastro.");
+				System.out.println("Digite o número da agência: ");
+				agencia = leia.nextInt();
+				
+				System.out.println("Digite o nome do Camarada: ");
+				leia.skip("\\R");
+				titular = leia.nextLine();
+				
+				System.out.println("Digite o tipo da Conta (1 - CC ou 2 - CP): ");
+				tipo = leia.nextInt();
+				
+				System.out.println("Digite o saldo inicial da Conta: ");
+				saldo = leia.nextFloat();
+				
+				switch(tipo) {
+				case 1 -> {
+					System.out.println("Digite o limite aprovado para a conta: ");
+					limite = leia.nextFloat();
+					contas.cadastrar(new ContaCorrente(contas.gerarNumero(), agencia, tipo, titular, saldo, limite));
+				}
+				case 2 -> {
+					System.out.println("Digite o aniversário de rendimento da conta: ");
+					aniver = leia.nextInt();
+					contas.cadastrar(new ContaPoupanca(contas.gerarNumero(), agencia, tipo, titular, saldo, aniver));
+				}
+				}
 				break;
 			case 2:
 				System.out.println(Cores.ANSI_YELLOW_BACKGROUND_BRIGHT + Cores.TEXT_RED_BOLD + 
 						"A comunidade BanComuna não para de crescer, por que quem ganha aqui é você! Até o momento contamos com a presença de: ");
+				contas.listarTodas();
 				break;
 			case 3:
 				System.out.println(Cores.ANSI_YELLOW_BACKGROUND_BRIGHT + Cores.TEXT_RED_BOLD + "Nenhum camarada ficará para trás! Localize agora sua conta: ");
